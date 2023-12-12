@@ -1,31 +1,7 @@
-const URL_BREED = 'https://api.thecatapi.com/v1/breeds';
-const URL_SEACRH_BREED ='https://api.thecatapi.com/v1/images/search?breed_ids=';
-const api_key = 'live_UYcNHMXMZUE8f3KQl2VWhf8LHKxL9n8ZxPDMX3MYZGFamrSUaM0QqEjYkFXdce9u';
-const URL_SEARCH = 'https://api.thecatapi.com/v1/images/search';
+import { fetchBreeds, fetchCatByBreed } from './js/cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
-function fetchBreeds() {
-  return fetch(URL_BREED, {
-    headers: {
-      'x-api-key': api_key,
-    },
-  }).then(response => {
-    if (!response.ok) { 
-      throw ('Mistake');
-    }
-    return response.json();
-  });
-}
-function fetchCatByBreed(breedId) { 
-  return fetch(URL_SEACRH_BREED+`${breedId}`, { 
-    headers: { 'x-api-key': api_key, }, 
-  }).then(response => { 
-    if (!response.ok) {
-      throw ('Mistake');
-    }
-    return response.json(); 
-  });
-}
+const URL_SEARCH = 'https://api.thecatapi.com/v1/images/search';
 const BreedSelect = document.querySelector('.breed-select');
 BreedSelect.setAttribute('hidden', true);
 const CatInfo = document.querySelector('.cat-info');
